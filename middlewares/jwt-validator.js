@@ -19,7 +19,7 @@ const jwtValidator = (req, res = response, next ) =>{
             process.env.SECRET_JWT_SEED,
         )
 
-        req._id = uid
+        req.uid = uid
         req.name = name
 
     } catch (error) {

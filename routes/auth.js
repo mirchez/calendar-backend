@@ -13,7 +13,7 @@ router.post(
         check('password',"Password should be at least six characters").isLength({min: 6}),
         fieldValidator,
     ],
-    createUser)
+    createUser)     
 
 router.post('/', 
     [

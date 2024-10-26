@@ -17,10 +17,7 @@ const {
 router.use( jwtValidator )
 
 //get event
-router.get('/get',
-    [
-        
-    ], getEvent )
+router.get('/get', getEvent )
 
 //create a new event
 router.post('/create',

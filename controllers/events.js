@@ -45,7 +45,6 @@ const updateEvent = async(req, res = response) =>{
 
         const event = await Event.findById(eventId)
 
-        console.log({event})
         if(!event){ 
             return res.status(404).json({
                 ok: false,

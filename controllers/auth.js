@@ -26,11 +26,11 @@ const createUser = async (req, res = response) =>{
         await user.save()
         
         //generate token
-        const token = await generateJWT( user._id, user.name)
+        const token = await generateJWT( user.id, user.name)
 
         res.status(201).json({
             ok: true,
-            uid : user._id,
+            uid : user.id,
             name : user.name,
             token,
         })
@@ -68,11 +68,11 @@ const loginUser = async(req, res = response) =>{
             })
         }
         //generate token
-        const token = await generateJWT( user._id, user.name)
+        const token = await generateJWT( user.id, user.name)
 
         res.status(201).json({
             ok: true,
-            uid : user._id,
+            uid : user.id,
             name : user.name,
             token,
         })
@@ -88,15 +88,17 @@ const loginUser = async(req, res = response) =>{
 
 }
 
-const renewToken = async(req, res = response) =>{
+const renewToken = async(req, res = response) => {
 
-    const uid = req._id
-    const name = req.name
-    
+    const { uid, name } = req  // Extrae uid y name del req que fueron asignados por el middleware
+
+    // Generar un nuevo token
     const token = await generateJWT(uid, name)
 
     res.json({
-        ok:true,
+        ok: true,
+        uid,
+        name,
         token,
     })
 }

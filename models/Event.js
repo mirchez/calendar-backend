@@ -1,7 +1,7 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model } = require('mongoose');
 
 const EventSchema = Schema({
-    title:{
+    title: {
         type: String,
         required: true
     },
@@ -12,22 +12,21 @@ const EventSchema = Schema({
         type: Date,
         required: true
     },
-    start: {
+    end: { 
         type: Date,
         required: true
     },
-    user:{
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
     }
-    
-})
+});
 
 EventSchema.method('toJSON', function() {
-    const { __v, _id, ...object } = this.toObject()
-    object.id = _id
-    return object
-})
+    const { __v, _id, ...object } = this.toObject();
+    object.id = _id;
+    return object;
+});
 
-module.exports = model( 'Event', EventSchema)
+module.exports = model('Event', EventSchema);
